@@ -147,6 +147,21 @@ def create_event(creds:Credentials,
 #%% Utilities
 
 def get_creds(filepath_to_credentials:str) -> Credentials:
+  '''
+  Accesses user credentials and caches them in token.json.
+  
+  Parameters
+  ----------
+  filepath_to_credentials : str
+      A system filepath to credentials.json file. If no credentials.json
+      exists, will create a credentials.json at this location.
+  
+  Returns
+  -------
+  Credentials
+      Credentials from google.oauth2.credentials
+  
+  '''
   creds = None
   # The file token.json stores the user's access and refresh tokens, and is
   # created automatically when the authorization flow completes for the first
