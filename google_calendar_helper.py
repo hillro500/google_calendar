@@ -1,3 +1,10 @@
+"""
+Code taken and adapted from https://developers.google.com/workspace/calendar/api/guides/create-events.
+
+This module is meant to be used as a helper module that can imported and used to create events to a google
+calendar specified by the user.
+"""
+
 import datetime as dt
 import os
 
