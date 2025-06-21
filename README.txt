@@ -1,16 +1,9 @@
-To run for this program, navigate to this folder in the working directory.
-
-run this command:
-
-python .\filename.py
-
-Helpful resources:
-
-Google Calendar Events API:
+Helpful resources used in making this project:
+Google Calendar Events API
 https://developers.google.com/workspace/calendar/api/v3/reference/events
 
-Google Calendar API Guides:
+Google Calendar API Guides
 https://developers.google.com/workspace/calendar/api/guides/create-events
 
-Google Auth Platform/ Clients:
+Google Auth Platform/Clients
 https://console.cloud.google.com/auth/clients?inv=1&invt=Ab0qMA&project=usta-tennis-454822&pli=1
