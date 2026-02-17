@@ -10,3 +10,7 @@ https://console.cloud.google.com/auth/clients?inv=1&invt=Ab0qMA&project=usta-ten
 
 Google's Python Workspace on GitGub 
 https://github.com/googleworkspace/python-samples
+
+
+Note: Each time a user logs in at a different location, they will need to create a new client. 
+An alternative solution would be sharing the credentials.json file that was origninally created.
