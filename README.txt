@@ -7,3 +7,6 @@ https://developers.google.com/workspace/calendar/api/guides/create-events
 
 Google Auth Platform/Clients
 https://console.cloud.google.com/auth/clients?inv=1&invt=Ab0qMA&project=usta-tennis-454822&pli=1
+
+Google's Python Workspace on GitGub 
+https://github.com/googleworkspace/python-samples
