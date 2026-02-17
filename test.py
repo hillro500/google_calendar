@@ -1,4 +1,8 @@
+import datetime as dt
+from requests.exceptions import HTTPError
 import google_calendar_helper as gch
+
+from googleapiclient.discovery import build
 
 def get_10_calendar_events():
   """Shows basic usage of the Google Calendar API.
@@ -34,7 +38,7 @@ def get_10_calendar_events():
       start = event["start"].get("dateTime", event["start"].get("date"))
       print(start, event["summary"])
 
-  except HttpError as error:
+  except HTTPError as error:
     print(f"An error occurred: {error}")
     
   print("Program completed successfully.")
