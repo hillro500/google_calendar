@@ -21,14 +21,14 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
 #%%
 def create_event(creds:Credentials,
-                 summary:str, 
-                 start:dt.datetime, 
-                 end:dt.datetime, 
-                 location:str='', 
-                 description:str='', 
-                 recurrance:str='', 
+                 summary:str,
+                 start:dt.datetime,
+                 end:dt.datetime,
+                 location:str='',
+                 description:str='',
+                 recurrance:str='',
                  timezone:str='America/Chicago',
-                 attendees:list[dict]=[], 
+                 attendees:list[dict]=[],
                  reminder_overrides:list[dict]=[],
                  calendarId:str='primary') -> None:
   '''
@@ -109,6 +109,10 @@ def create_event(creds:Credentials,
   }
   
   '''
+  if not creds:
+    print('Invalid Credentials passed: ', creds)
+    return
+  
   try:
     service = build("calendar", "v3", credentials=creds)
 
@@ -181,10 +185,15 @@ def get_creds(filepath_to_credentials:str) -> Credentials:
     if creds and creds.expired and creds.refresh_token:
       creds.refresh(Request())
     else:
-      flow = InstalledAppFlow.from_client_secrets_file(
-          filepath_to_credentials, SCOPES
-      )
-      creds = flow.run_local_server(port=0)
+      try:
+        flow = InstalledAppFlow.from_client_secrets_file(
+            filepath_to_credentials, SCOPES
+        )
+        creds = flow.run_local_server(port=0)
+      except FileNotFoundError:
+        print(filepath_to_credentials, 'not found.')
+        print('Create a new client to regenerate a credential.json, or move existing .json to path.')
+        return creds
     # Save the credentials for the next run
     with open("token.json", "w") as token:
       token.write(creds.to_json())

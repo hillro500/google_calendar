@@ -3,4 +3,5 @@
 /leagues
 /token.json
 /__pycache__
+debug.log
 run_create_tennis_calendar.py
