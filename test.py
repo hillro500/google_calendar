@@ -43,6 +43,20 @@ def get_10_calendar_events():
     
   print("Program completed successfully.")
 
+def test_event(creds_path='credentials.json', calendarId='primary'):
+    creds = gch.get_creds(creds_path)
+
+    start = dt.datetime.now(dt.timezone.utc)
+    end = start + dt.timedelta(hours=1)
+
+    gch.create_event(creds,
+                     'TEST EVENT',
+                     start,
+                     end,
+                     location='N/A',
+                     description='Test Event feel free to delete.',
+                     calendarId=calendarId)
+
 #%% Main
 
 def main():
