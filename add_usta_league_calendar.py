@@ -8,7 +8,7 @@ import google_calendar_helper as gch
 
 #%% Utilities
 
-def read_normal_csv(filepath) -> pd.DataFrame:
+def read_csv(filepath) -> pd.DataFrame:
     filepath = os.path.join(filepath)
     return pd.read_csv(filepath, sep='\t')
 
@@ -135,8 +135,8 @@ def create_events_from_event_df(event_df, creds_path='credentials.json', calenda
 
 #%% Main
 
-def add_schedule_to_tennis_calendar(filepath, my_team, creds_path, calendarId):
-    df = read_normal_csv(filepath)
+def add_schedule_to_calendar(filepath, my_team, creds_path, calendarId):
+    df = read_csv(filepath)
     scrambled = False
     # if text file has not already been formatted, format text file.
     if df['Facility/Match Site'].isna().any():
