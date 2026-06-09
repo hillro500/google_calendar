@@ -1,7 +1,7 @@
-/add_usta_league_calendar.py
 /credentials.json
 /leagues
 /token.json
 /__pycache__
+launch.json
 debug.log
 run_create_tennis_calendar.py
