@@ -15,7 +15,7 @@ website. **Now, I just copy my schedule into a text file, and run my code, and m
 
 ### `google_calendar_helper.py`
 
-This is the backbone of the code that allows for interaction with the user's google calendar.
+This module calls the Google API which that allows for interaction with the user's google calendar.
 
 - `create_events()` 
     - to create calendar events
@@ -24,7 +24,7 @@ This is the backbone of the code that allows for interaction with the user's goo
 
 ### `add_usta_league_calendar.py`
 
-This is the part of the code that loads in the tennis schedule, formats it as a dataframe,
+This module loads in the tennis schedule, formats it as a dataframe,
 and prepares each row as an event to be added to the calendar.
 
 #### Utilities
@@ -57,13 +57,14 @@ and prepares each row as an event to be added to the calendar.
     1. Login to USTA.com and go to the tennislink website
     2. Navigate to your league and click the **Match Schedule** tab
     3. Copy the schedule, inlcuding the column headers and paste to a text document.
-    4. Save the text document in a location you remember and close it.
+    4. Save the text document in a location you remember (preferably this workspace) and close it.
 3. Pull down this google_calendar repo into your workspace.
 
 ## How to use
 
 1. Run test.py to ensure connection to Google Calendar is working.
-2. Follow the instructions to login to Google Calendar
+2. Login to Google Calendar when prompted
+    - if link is not opening, copy link into browser and login that way
 3. Create a Main.py file that looks something like this:
 
 ```python
@@ -94,7 +95,7 @@ https://developers.google.com/workspace/calendar/api/guides/create-events
 Google Auth Platform
 https://console.cloud.google.com/auth/
 
-Google's Python Workspace on GitGub 
+Google's Python Workspace on GitHub 
 https://github.com/googleworkspace/python-samples
 
 Markdown (.md) Guide
@@ -105,7 +106,7 @@ https://www.markdownguide.org/basic-syntax/
 The python quickstart guide will explain the steps to setup a google cloud application and install 
 a necessary python environment and packages. Click the link below and follow the instructions:
 
-https://developers.google.com/workspace/calendar/api/quickstart
+https://developers.google.com/workspace/calendar/api/quickstart/python
 
 When Completing the **Prequisites** section:
 1. Setup Google Developer Project: https://developers.google.com/workspace/guides/create-project
