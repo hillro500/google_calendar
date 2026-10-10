@@ -55,12 +55,15 @@ def test_event(creds_path='credentials.json', calendarId='primary'):
                      end,
                      location='N/A',
                      description='Test Event feel free to delete.',
+                     reminder_overrides = [{'method': 'popup', 'minutes': 24 * 60},
+                                               {'method': 'popup', 'minutes': 45}],
                      calendarId=calendarId)
 
 #%% Main
 
 def main():
   get_10_calendar_events()
+  # test_event()
 
 if __name__ == "__main__":
   print("Testing Google Calendar Helper")
