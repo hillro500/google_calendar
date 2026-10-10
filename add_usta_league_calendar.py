@@ -23,7 +23,17 @@ def unscramble_csv(df:pd.DataFrame):
             if len_corrected == 2:
                 corrected_series = replace_nans(corrected_series, row, split_row=True)
             elif len_corrected > 2 and len_corrected < 8:
-                _print_debug_info(row, corrected_series)
+                _print_debug_info(row, corrected_series, exception=False)
+                
+                to_split = input('Do you want to split this row? Y/N: ')
+                if to_split.lower().strip() == 'y' or to_split.lower().strip() == 'yes':
+                    split = True
+                elif to_split.lower().strip() == 'n' or to_split.lower().strip() == 'no':
+                    split = False
+                else:
+                    print('unrecognized input, splitting')
+                    split = True
+                corrected_series = replace_nans(corrected_series, row, split_row=split) #this may not always work
             else:
                 if not corrected_series.isna().all():
                     entries.append(corrected_series)
@@ -88,12 +98,13 @@ def replace_nans(row_with_nans:pd.Series, replacement_row:pd.Series, split_row:b
     
     return pd.Series(combined)
 
-def _print_debug_info(row:pd.Series, corrected_series:pd.Series) -> Exception:
+def _print_debug_info(row:pd.Series, corrected_series:pd.Series, exception=True) -> None:
     print('Lenght of row: ', len(row[~row.isna()]))
     print('Length so far: ', len(corrected_series[~corrected_series.isna()]))
     print('Row so far: \n', corrected_series)
     print('Broken row: \n', row)
-    return Exception("Weird split here, you're gonna have to do some coding.")
+    if exception:
+        raise Exception("Weird split here, you're gonna have to do some coding.")
 
 #%% Calendar Functions
 
@@ -120,7 +131,7 @@ def create_events_from_event_df(event_df, creds_path='credentials.json', calenda
     creds = gch.get_creds(creds_path)
 
     reminder_overrides = [{'method': 'popup', 'minutes': 24 * 60},
-                          {'method': 'popup', 'minutes': 2 * 60}]
+                          {'method': 'popup', 'minutes': 45}]
 
     for idx, row in event_df.iterrows():
         gch.create_event(creds,
@@ -142,13 +153,17 @@ def add_schedule_to_calendar(filepath, my_team, creds_path, calendarId):
     if df['Facility/Match Site'].isna().any():
         df = unscramble_csv(df)
         scrambled = True
+
+    print('\nTennis Matches Dataframe:')
+    print(df)
+
     event_df = create_event_df(df, my_team)
     print('Event DataFrame:')
     print(event_df)
     print()
     add = input('Do you want to add events to calender? Y/N: ')
     if add.lower().strip() == 'y' or add.lower().strip() == 'yes':
-        create_events_from_event_df(event_df, creds_path=creds_path)
+        create_events_from_event_df(event_df, creds_path=creds_path, calendarId=calendarId)
         if scrambled:
             df.to_csv(filepath, index=False, sep='\t')
     elif add.lower().strip() == 'n' or add.lower().strip() == 'no':
